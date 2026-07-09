@@ -29,7 +29,7 @@
                 <b style="color: #0056b3;">🗳️ 투표 현황: </b> <span id="current-status" style="font-weight: bold; color: #d63384;">0 / 5</span> 투표 완료
             </div>
             <p style="text-align: center; background: #f8f9fa; padding: 10px; border-radius: 5px; font-weight: bold; color: #d63384; margin-bottom: 0;">
-                ※ 투표기간: 2026. 5. 6(수) 12시 ~ 5. 10(일) 18시
+                ※ 투표기간: 2026. 7. 9(목) 12시 ~ 7. 13(월) 18시
             </p>
         </div>
     </div>
@@ -39,42 +39,132 @@
 <script>
     const scriptURL = 'https://script.google.com/macros/s/AKfycbwAqcViKrrHXlIws4CtJRfhENIXr8WOHh0g7OgnQBnL3lvzhqtpUtdkbQATQJMj8yof/exec';
 
-    const VOTE_COUNT_KEY = 'adzVoteCount_2026_0506';
-    const VOTED_INDICES_KEY = 'adzVotedIndices_2026_0506';
-    const POPUP_KEY = 'adzIntroPopupShown_2026_0506';
+    const VOTE_COUNT_KEY = 'adzVoteCount_2026_0709';
+    const VOTED_INDICES_KEY = 'adzVotedIndices_2026_0709';
+    const POPUP_KEY = 'adzIntroPopupShown_2026_0709';
 
     const adList = [
-        { id: "qJ7qlWSN3_I", title: "[소이조이] 내 입에 내 몸에 당당한 간식, 소이조이!" },
-        { id: "mB3g6I0mM6I", title: "[HD현대] 진짜 큰 사람 모집 중 (키 제한 없음) | 2026년 상반기 HD현대 신입사원 채용" },
-        { id: "ohqqj9jZGwQ", title: "[짐빔 하이볼] 함께 즐길 짐빔 됐어?" },
-        { id: "eHs7jHtNUqY", title: "[블랙야크] THIS IS HIMALAYAN" },
-        { id: "PuTJwCnM1nw", title: "[The Kia EV] For Every Life | EV 멀티버스 EV5" },
-        { id: "tu0snb0PwGI", title: "[갤럭시 버즈4 프로] 이어폰 바꿀까 | 통화 편" },
-        { id: "PHjntPl2OHU", title: "[T멤버십] [상위 1%의 소개팅] 이런 연프 본 적 있어?" },
-        { id: "wN89PcdHvV4", title: "[콜대원] 감기의 소리를 찾아서 런칭편" },
-        { id: "JotbQgnkrM0", title: "[신세계그룹] 랜더스 쇼핑페스타 압도적 득템 쇼! 런칭편" },
-        { id: "Ei5vddkE_l4", title: "[토스증권] 이것은 분명 인류의 호재 | 토스증권 AI편" },
-        { id: "rtSdnHXjcH4", title: "[대산로얄진염소] 대산 광고" },
-        { id: "44IOd1Tc6JQ", title: "[본죽&비빔밥] 냉이된불🎶: 부를수록 기운이 나고 입맛이 살아나는 봄의 소리" },
-        { id: "HWjXl3KWwng", title: "[호올스] 숨이 턱턱 막힐 땐 이것만 기억해" },
-        { id: "PtZKD2SMmLY", title: "[컴투스프로야구] 올해 야구의 주인공은 너야! | 2026 KBO 개막편" },
-        { id: "QyKNDadCmbI", title: "[나비엔 제습 환기청정기 매직플러스] 같은 구조인데, 이 집 공기는 왜 다르지?" },
-        { id: "QQVHCzs-pJM", title: "[게토레이 런] 짜릿한 완주의 맛, 게토레이 런" },
-        { id: "Sm8YL0OCPwg", title: "[컴포즈커피] 그날 밤, 우리의 디카페인" },
-        { id: "vhw1R8nSt9g", title: "[비비드키친] 1등 저당 소스 편" },
-        { id: "LDuZcS22jnQ", title: "[칠성사이다] 답답한 순간, 터지는 사이다! K-Soul Drink 칠성사이다 (feat. 롯데 자이언츠 레이예스)" },
-        { id: "nHlnIoswdcg", title: "[구글 제미나이] 김연아의 발레 도전 | 죽음의 무도" },
-        { id: "-YDHnITHfxo", title: "[투썸플레이스] 오월의 마음엔 망고생" },
-        { id: "uV_8ClzqLQ0", title: "[LG유플러스] 딸의 낯선 목소리" },
-        { id: "ZTPzK4zdvOM", title: "[처음처럼] 그때처럼 처음처럼 부드러울 따름~ 감성남 편" },
-        { id: "tMOM9tAit88", title: "[엔카] 나의 잔존가치 편" },
-        { id: "8Mpf3YvpzRw", title: "[삼쩜삼] 당신의 숨은돈, 끝까지 찾는다" },
-        { id: "ofbwqKYRD_w", title: "[테라] 테라 FOOH 테라타워" },
-        { id: "tuZdwwZDxj0", title: "[시몬스] LIFE IS COMFORT | Ep. SET" },
-        { id: "5j0lvHHFzhI", title: "[소니 α7 V] 가장 쉬운 완벽, Alpha 7 V" },
-        { id: "TMRRokbsZCo", title: "[현대면세점] 현대면세점. WE ARE HERE." },
-        { id: "hExY1KNg_fQ", title: "[카스 레몬스퀴즈] 레몬맨의 상큼한 귀환!" }
-    ];
+        {
+                "id": "41h1AF6KH2k",
+                "title": "[컴포즈커피] 김원훈과 함께하는 컴포즈_더위처방 편"
+        },
+        {
+                "id": "CkshEd9Aatc",
+                "title": "[컨디션] 술집에서 장카설유가 합석하자고 한 썰 \"챙기자 같이 놀 컨디션 : 술집\" 편"
+        },
+        {
+                "id": "h2o1gzLxjXQ",
+                "title": "[박카스] 만능팀장_30s 편"
+        },
+        {
+                "id": "6DooAFlcXA8",
+                "title": "[구글플레이] 카리나 vs 페이커, 누구랑 플레이할래? | Google Play 편"
+        },
+        {
+                "id": "dPd4kOQeJ-Y",
+                "title": "[삼성SDS] [강철의 신입사원 시즌2] 미래형 뒷담화 편"
+        },
+        {
+                "id": "UAVurqBD4vA",
+                "title": "[NH농협은행] 이 땅에 진심인 100% 은행 편"
+        },
+        {
+                "id": "ASbQFT-8x50",
+                "title": "[질병관리청] 12세 남성청소년도 HPV 무료 예방접종!! 편"
+        },
+        {
+                "id": "fBKVFpFS7KM",
+                "title": "[한손한끼] NO BIN SON PROJECT [Full] 편"
+        },
+        {
+                "id": "pFgG-sBN5Zg",
+                "title": "[경동나비엔] 수면 이혼을 이겨낸 부부의 신혼 필수템! (나비엔 숙면매트 사계절 디지털 30초 ) 편"
+        },
+        {
+                "id": "uPypaStqa5k",
+                "title": "[던전앤파이터] 조혜련과 함께하는 신격권 다이어트 편"
+        },
+        {
+                "id": "PnvIkVyy8vA",
+                "title": "[땡겨요] 나라도 땡겨요 시킨다: 주문 30s 편"
+        },
+        {
+                "id": "oXJhlAEvZXc",
+                "title": "[SK하이닉스] 메몰이소녀 편"
+        },
+        {
+                "id": "qjOV71ZsOZ0",
+                "title": "[CJ대한통운 오네] 확인할 건 오네_브랜딩 30초 편"
+        },
+        {
+                "id": "gWpeHBI7Vc0",
+                "title": "[한솔] 당연, 한솔이 하고있습니다 편"
+        },
+        {
+                "id": "Mx8uFrcfMz4",
+                "title": "[소바바 황금홀릭] [소바바치킨 신작 애니 EP 0] 마침내, 군계일학: 치킨들의 장난은 여기까지 편"
+        },
+        {
+                "id": "xZVGeQU2Zps",
+                "title": "[가마치통닭] 가마치통닭 사랑은 통닭통닭 이별 15s 편"
+        },
+        {
+                "id": "oXdrJxp1g00",
+                "title": "[시몬스] [시몬스 ESG 캠페인] 하이파이브 셰어링 프로젝트 | 소녀와 스프링맨의 특별한 하이파이브 편"
+        },
+        {
+                "id": "tgBlIsfZZLQ",
+                "title": "[오션월드] [이수지X오션월드] 스무 살의 파티를 시작해 볼까? (Full ver / 가로형) 편"
+        },
+        {
+                "id": "10xkuaE160M",
+                "title": "[차살때] 차살때 TVC [차 살 땐, 차살때] 본편 30” 편"
+        },
+        {
+                "id": "ACyFLUnDfuk",
+                "title": "[대한적십자사] 뿌듯하루_30s 편"
+        },
+        {
+                "id": "duOcuNy9Pl8",
+                "title": "[SK브로드밴드] [B 다이렉트샵] 음치 레전드 노홍철과 SONG 광고 만들기 프로젝트! 샵가능? 편"
+        },
+        {
+                "id": "nOGhoK9rj-c",
+                "title": "[유엔난민기구] 세상에 유난하다 편"
+        },
+        {
+                "id": "UMjULLZQ3Es",
+                "title": "[우체국보험] 간편한건강보험 편"
+        },
+        {
+                "id": "bgfJljkcd4E",
+                "title": "[2% 부족할 때] 2% 부족한 순간들도 마침내 채워질 너에게 한로로 드림 (Full 버전) 편"
+        },
+        {
+                "id": "xNCM81SCj6w",
+                "title": "[네이버플러스 스토어] [넾다세일] 거대대대대대한 혜택, 넾다세일 시작 편"
+        },
+        {
+                "id": "lnzeZIEbu2w",
+                "title": "[코웨이] 뮤지컬 더매너 | 풀버전 공개 편"
+        },
+        {
+                "id": "OKgtsjXCPwQ",
+                "title": "[SK텔레콤] 티다이렉트샵 편"
+        },
+        {
+                "id": "Y9J9ly7JWU8",
+                "title": "[비즈넵] 사장님! 안받아갔으면 바다가시죠!"
+        },
+        {
+                "id": "St_kIJLsni4",
+                "title": "[롯데면세점] 롯데면세점 with 킥플립│쇼핑, 고뇌하지 말고. 롯데면세점 편"
+        },
+        {
+                "id": "C2tV9OAdhyY",
+                "title": "[카카오페이] 굿딜 좋아 죽겠어~ 최성곤 라이브 대공개 편"
+        }
+];
 
     let voteCount = parseInt(localStorage.getItem(VOTE_COUNT_KEY)) || 0;
     let votedIndices = JSON.parse(localStorage.getItem(VOTED_INDICES_KEY)) || [];
@@ -96,7 +186,7 @@
                 <div class="info">
                     <h3>${String(index + 1).padStart(2, '0')}. ${ad.title}</h3>
                     <button class="vote-btn ${hasVoted ? 'voted' : ''}" id="btn-${index}"
-                        onclick="submitVote('${ad.title.replace(/'/g, "\\'")}', ${index})" ${hasVoted ? 'disabled' : ''}>
+                        onclick="submitVoteByIndex(${index})" ${hasVoted ? 'disabled' : ''}>
                         ${hasVoted ? '투표 완료' : '투표하기'}
                     </button>
                 </div>
@@ -118,16 +208,27 @@
     window.onload = function() {
         if (!localStorage.getItem(POPUP_KEY)) {
             alert("격월로 진행되는 베스트 크리에이티브 온라인 투표에 오신 여러분 환영합니다.\n\n" +
-                  "후보작은 2026년 3~4월에 온에어된 광고 약 4,000여 개를 선별하여 30개의 광고가 선정되었습니다.\n\n" +
+                  "후보작은 2026년 5~6월에 온에어된 광고 약 4,000여 개를 선별하여 30개의 광고가 선정되었습니다.\n\n" +
                   "온라인 투표를 통해 10개 이하 광고를 선정, 내부 심사를 거쳐 최종 1편의 베스트 크리에이티브가 결정됩니다.\n" +
-                  "최종 선정작은 2026년 대한민국광고대상에서 예심 없이 본심에 오르며, 해당 팀의 인터뷰는 ADZ 5/6월호에서 확인하실 수 있습니다.\n\n" +
-                  "※ 투표기간: 2026. 5. 6(수) 12시 ~ 5. 10(일) 18시까지");
+                  "최종 선정작은 2026년 대한민국광고대상에서 예심 없이 본심에 오르며, 해당 팀의 인터뷰는 ADZ 7/8월호에서 확인하실 수 있습니다.\n\n" +
+                  "※ 투표기간: 2026. 7. 9(목) 12시 ~ 7. 13(월) 18시까지");
 
             localStorage.setItem(POPUP_KEY, 'true');
         }
 
         renderApp();
     };
+
+    function submitVoteByIndex(index) {
+        const ad = adList[index];
+
+        if (!ad) {
+            alert("광고 정보를 찾을 수 없습니다. 페이지를 새로고침한 뒤 다시 시도해 주세요.");
+            return;
+        }
+
+        submitVote(ad.title, index);
+    }
 
     function submitVote(title, index) {
         if (voteCount >= 5) {
