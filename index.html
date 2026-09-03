@@ -3,33 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ADZ 베스트 크리에이티브 투표</title>
+    <title>베스트 크리에이티브 투표</title>
     <style>
         body { font-family: 'Pretendard', sans-serif; margin: 0; padding: 20px; background: #f0f2f5; color: #333; }
         .header { text-align: center; padding: 30px 0; }
-        #app { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
-        .ad-card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); display: flex; flex-direction: column; }
-        .video-container { position: relative; padding-bottom: 56.25%; height: 0; background: #000; }
-        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
-        .info { padding: 15px 20px; text-align: left; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
-        .info h3 { margin: 0 0 15px 0; font-size: 1rem; font-weight: 600; line-height: 1.4; color: #222; }
-        .vote-btn { background: #007bff; color: white; border: none; padding: 14px 0; border-radius: 8px; font-weight: bold; cursor: pointer; width: 100%; transition: 0.3s; }
+        
+        #app { 
+            max-width: 1100px; 
+            margin: 0 auto; 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); 
+            gap: 25px; 
+        }
+
+        .ad-card { 
+            background: white; 
+            border-radius: 15px; 
+            overflow: hidden; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
+            display: flex;
+            flex-direction: column;
+        }
+
+        .video-container { 
+            position: relative; 
+            padding-bottom: 56.25%; 
+            height: 0; 
+            background: #000;
+        }
+        .video-container iframe { 
+            position: absolute; 
+            top: 0; left: 0; 
+            width: 100%; height: 100%; 
+            border: 0; 
+        }
+
+        .info { 
+            padding: 15px 20px; 
+            text-align: left; 
+            flex-grow: 1; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: space-between; 
+        }
+        .info h3 { 
+            margin: 0 0 15px 0; 
+            font-size: 1rem; 
+            font-weight: 600;
+            color: #222;
+            line-height: 1.4;
+        }
+        
+        .vote-btn { 
+            background: #007bff; color: white; border: none; padding: 14px 0; 
+            border-radius: 8px; font-weight: bold; cursor: pointer; width: 100%; transition: 0.3s;
+        }
         .vote-btn:hover { background: #0056b3; }
         .vote-btn:disabled { background: #ccc; cursor: not-allowed; }
-        .vote-btn.voted { background: #28a745; cursor: default; }
+        .vote-btn.voted { background: #28a745; }
     </style>
 </head>
 <body>
 
     <div class="header">
-        <h2>ADZ 베스트 크리에이티브 투표</h2>
+        <h2>🎬 베스트 크리에이티브 투표</h2>
+        
         <div style="max-width: 800px; margin: 20px auto; text-align: left; background: #fff; padding: 25px; border-radius: 12px; border: 1px solid #e1e4e8; line-height: 1.6; font-size: 0.95rem;">
-            <p style="margin-top: 0;">후보작 중 베스트 크리에이티브를 선택해 주세요. <b>(최대 5개까지 선택 가능)</b></p>
-            <div style="background: #eef7ff; padding: 15px; border-radius: 8px; border-left: 5px solid #007bff; margin: 15px 0;">
-                <b style="color: #0056b3;">🗳️ 투표 현황: </b> <span id="current-status" style="font-weight: bold; color: #d63384;">0 / 5</span> 투표 완료
+            <p style="margin-top: 0;">격월로 진행되는 베스트 크리에이티브 온라인 투표에 오신 여러분 환영합니다.<br>
+            후보작은 <b>2026년 7~8월에 온에어된 광고 중 30개의 광고가 선정</b>되었습니다.</p>
+            
+            <p>온라인 투표를 통해 30개 중 10개의 광고를 선정, 내부 심사를 통해 최종 1개작을 선정합니다.<br>
+            추후 선정된 베스트 크리에이티브에 대한 시상 및 인터뷰가 진행될 예정이며,<br>
+            인터뷰는 <b>ADZ 9/10월호</b>에서 확인할 수 있습니다.</p>
+            
+            <div style="background: #eef7ff; padding: 15px; border-radius: 8px; border-left: 5px solid #007bff; margin: 20px 0;">
+                <b style="color: #0056b3; font-size: 1.1rem;">🗳 투표 방법 및 절차</b>
+                <ol style="margin: 10px 0 0 20px; padding: 0;">
+                    <li>썸네일을 클릭하여 광고를 감상하세요.</li>
+                    <li>후보작 중 베스트 크리에이티브를 선택해 주세요. <b>(최대 5개까지 선택 가능)</b></li>
+                    <li>투표하기 버튼을 클릭하면 투표가 완료됩니다.</li>
+                </ol>
             </div>
+
             <p style="text-align: center; background: #f8f9fa; padding: 10px; border-radius: 5px; font-weight: bold; color: #d63384; margin-bottom: 0;">
-                ※ 투표기간: 2026. 7. 9(목) 12시 ~ 7. 13(월) 18시
+                ※ 투표기간: 2026년 9월 2일(수) ~ 9월 6일(일)까지
             </p>
         </div>
     </div>
@@ -37,248 +94,246 @@
     <div id="app"></div>
 
 <script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbwAqcViKrrHXlIws4CtJRfhENIXr8WOHh0g7OgnQBnL3lvzhqtpUtdkbQATQJMj8yof/exec';
-
-    const VOTE_COUNT_KEY = 'adzVoteCount_2026_0709';
-    const VOTED_INDICES_KEY = 'adzVotedIndices_2026_0709';
-    const POPUP_KEY = 'adzIntroPopupShown_2026_0709';
-
+    const scriptURL = "https://script.google.com/macros/s/AKfycbxDchjYrdyKggqADRJBtrdpfLKurrHOdzHq0B8ZTmo1L5PwEAuoCTgYfF_U_fY8Q-N7rg/exec";
+    const MAX_VOTES = 5;
+    // 이전 회차의 투표 기록과 분리합니다.
+    const STORAGE_KEY = 'bestCreative_2026_09_10_votes';
     const adList = [
-        {
-                "id": "41h1AF6KH2k",
-                "title": "[컴포즈커피] 김원훈과 함께하는 컴포즈_더위처방 편"
-        },
-        {
-                "id": "CkshEd9Aatc",
-                "title": "[컨디션] 술집에서 장카설유가 합석하자고 한 썰 \"챙기자 같이 놀 컨디션 : 술집\" 편"
-        },
-        {
-                "id": "h2o1gzLxjXQ",
-                "title": "[박카스] 만능팀장_30s 편"
-        },
-        {
-                "id": "6DooAFlcXA8",
-                "title": "[구글플레이] 카리나 vs 페이커, 누구랑 플레이할래? | Google Play 편"
-        },
-        {
-                "id": "dPd4kOQeJ-Y",
-                "title": "[삼성SDS] [강철의 신입사원 시즌2] 미래형 뒷담화 편"
-        },
-        {
-                "id": "UAVurqBD4vA",
-                "title": "[NH농협은행] 이 땅에 진심인 100% 은행 편"
-        },
-        {
-                "id": "ASbQFT-8x50",
-                "title": "[질병관리청] 12세 남성청소년도 HPV 무료 예방접종!! 편"
-        },
-        {
-                "id": "fBKVFpFS7KM",
-                "title": "[한손한끼] NO BIN SON PROJECT [Full] 편"
-        },
-        {
-                "id": "pFgG-sBN5Zg",
-                "title": "[경동나비엔] 수면 이혼을 이겨낸 부부의 신혼 필수템! (나비엔 숙면매트 사계절 디지털 30초 ) 편"
-        },
-        {
-                "id": "uPypaStqa5k",
-                "title": "[던전앤파이터] 조혜련과 함께하는 신격권 다이어트 편"
-        },
-        {
-                "id": "PnvIkVyy8vA",
-                "title": "[땡겨요] 나라도 땡겨요 시킨다: 주문 30s 편"
-        },
-        {
-                "id": "oXJhlAEvZXc",
-                "title": "[SK하이닉스] 메몰이소녀 편"
-        },
-        {
-                "id": "qjOV71ZsOZ0",
-                "title": "[CJ대한통운 오네] 확인할 건 오네_브랜딩 30초 편"
-        },
-        {
-                "id": "gWpeHBI7Vc0",
-                "title": "[한솔] 당연, 한솔이 하고있습니다 편"
-        },
-        {
-                "id": "Mx8uFrcfMz4",
-                "title": "[소바바 황금홀릭] [소바바치킨 신작 애니 EP 0] 마침내, 군계일학: 치킨들의 장난은 여기까지 편"
-        },
-        {
-                "id": "xZVGeQU2Zps",
-                "title": "[가마치통닭] 가마치통닭 사랑은 통닭통닭 이별 15s 편"
-        },
-        {
-                "id": "oXdrJxp1g00",
-                "title": "[시몬스] [시몬스 ESG 캠페인] 하이파이브 셰어링 프로젝트 | 소녀와 스프링맨의 특별한 하이파이브 편"
-        },
-        {
-                "id": "tgBlIsfZZLQ",
-                "title": "[오션월드] [이수지X오션월드] 스무 살의 파티를 시작해 볼까? (Full ver / 가로형) 편"
-        },
-        {
-                "id": "10xkuaE160M",
-                "title": "[차살때] 차살때 TVC [차 살 땐, 차살때] 본편 30” 편"
-        },
-        {
-                "id": "ACyFLUnDfuk",
-                "title": "[대한적십자사] 뿌듯하루_30s 편"
-        },
-        {
-                "id": "duOcuNy9Pl8",
-                "title": "[SK브로드밴드] [B 다이렉트샵] 음치 레전드 노홍철과 SONG 광고 만들기 프로젝트! 샵가능? 편"
-        },
-        {
-                "id": "nOGhoK9rj-c",
-                "title": "[유엔난민기구] 세상에 유난하다 편"
-        },
-        {
-                "id": "UMjULLZQ3Es",
-                "title": "[우체국보험] 간편한건강보험 편"
-        },
-        {
-                "id": "bgfJljkcd4E",
-                "title": "[2% 부족할 때] 2% 부족한 순간들도 마침내 채워질 너에게 한로로 드림 (Full 버전) 편"
-        },
-        {
-                "id": "xNCM81SCj6w",
-                "title": "[네이버플러스 스토어] [넾다세일] 거대대대대대한 혜택, 넾다세일 시작 편"
-        },
-        {
-                "id": "lnzeZIEbu2w",
-                "title": "[코웨이] 뮤지컬 더매너 | 풀버전 공개 편"
-        },
-        {
-                "id": "OKgtsjXCPwQ",
-                "title": "[SK텔레콤] 티다이렉트샵 편"
-        },
-        {
-                "id": "Y9J9ly7JWU8",
-                "title": "[비즈넵] 사장님! 안받아갔으면 바다가시죠!"
-        },
-        {
-                "id": "St_kIJLsni4",
-                "title": "[롯데면세점] 롯데면세점 with 킥플립│쇼핑, 고뇌하지 말고. 롯데면세점 편"
-        },
-        {
-                "id": "C2tV9OAdhyY",
-                "title": "[카카오페이] 굿딜 좋아 죽겠어~ 최성곤 라이브 대공개 편"
-        }
+    {
+        "number": 1,
+        "id": "iCgB-64LkI8",
+        "title": "[HL D&I Halla] 에피트에 살아야 돼"
+    },
+    {
+        "number": 2,
+        "id": "Z-ECe8H3rmo",
+        "title": "투자 고수 강팀장의 비법ㅣ슈퍼SOL_강말금x이준(오피스)"
+    },
+    {
+        "number": 3,
+        "id": "dTSfcz4xfW8",
+        "title": "The Moving Room"
+    },
+    {
+        "number": 4,
+        "id": "toEXlwk39Rc",
+        "title": "이건 그냥 사랑이야-런칭"
+    },
+    {
+        "number": 5,
+        "id": "xVvOhfpoLeg",
+        "title": "장항준 x 유해진 차기작 발표 현장 공개! 편"
+    },
+    {
+        "number": 6,
+        "id": "4BA1g1yIhfM",
+        "title": "영양이 필요할 때 오트몬드!"
+    },
+    {
+        "number": 7,
+        "id": "tjakBEmZQ5E",
+        "title": "소환사 님… 명령 안 하세요? | 크랙 히나"
+    },
+    {
+        "number": 8,
+        "id": "YfkSEDhe2D0",
+        "title": "그는 말술이다 편"
+    },
+    {
+        "number": 9,
+        "id": "eQ2QX91S-wM",
+        "title": "잃어버린 내 스마트폰은 어디로 갔을까?"
+    },
+    {
+        "number": 10,
+        "id": "YMD77PICcd8",
+        "title": "안 보면 후회한다는 장혁 꺼드럭 영상 (Ep.2)"
+    },
+    {
+        "number": 11,
+        "id": "prmDSxowHzY",
+        "title": "대한의 가장 빛나는 여권"
+    },
+    {
+        "number": 12,
+        "id": "7tOzy5dsiyo",
+        "title": "맛있게 먹기만 해도 프로틴이 따라와~!"
+    },
+    {
+        "number": 13,
+        "id": "yOczs6V4f2Y",
+        "title": "우리 시대의 낭만 스낵, 꼬깔콘"
+    },
+    {
+        "number": 14,
+        "id": "t0Z__UqphcU",
+        "title": "김남길 전미도의 '선넘선녀' : 무한 생선생활"
+    },
+    {
+        "number": 15,
+        "id": "GUHLhLBRMS8",
+        "title": "위대한 집안일"
+    },
+    {
+        "number": 16,
+        "id": "_q-8tQknRbo",
+        "title": "요즘 우리는 XM6로 몰입"
+    },
+    {
+        "number": 17,
+        "id": "tqNRBm4kRwA",
+        "title": "여러분, 정말 수거하셨습니다! [대한민국 최초 100% 재생 PET 칠성사이다]"
+    },
+    {
+        "number": 18,
+        "id": "z49A40CwgwM",
+        "title": "K-Zero 사이다"
+    },
+    {
+        "number": 19,
+        "id": "Md2Bd_Ut4XI",
+        "title": "Maxim T.O.P '가장 가까운 휴식' 오피스 편"
+    },
+    {
+        "number": 20,
+        "id": "2B9Sg8FAJZc",
+        "title": "펜타포트 분실물이 노래가 되다, Lost&Found 캠페인"
+    },
+    {
+        "number": 21,
+        "id": "CcTtzIe-RO0",
+        "title": "이 대사 기억하는 사람?"
+    },
+    {
+        "number": 22,
+        "id": "GiLJwzlVEnA",
+        "title": "BTS JIN&TUNA LOG - 바다단백질 받아!"
+    },
+    {
+        "number": 23,
+        "id": "ThoK5gs455o",
+        "title": "신한 나라사랑카드모델 유나, 그렇게 군인이 된다"
+    },
+    {
+        "number": 24,
+        "id": "1j5nWDA2094",
+        "title": "인간이 달에 가면 98%는 이 생각이 듭니다"
+    },
+    {
+        "number": 25,
+        "id": "njWJx0yrDnI",
+        "title": "눈앞에서 펼쳐지는 토스뱅크 해외송금"
+    },
+    {
+        "number": 26,
+        "id": "eroTbXC8NOU",
+        "title": "[활명수1897 KOD] 브랜드필름 with CORTIS"
+    },
+    {
+        "number": 27,
+        "id": "eEOPfgHHDPU",
+        "title": "되면 창업 안돼도 스펙! 당신의 아이디어가 시작되는 곳"
+    },
+    {
+        "number": 28,
+        "id": "1XBTxdMOOFQ",
+        "title": "2026 SK이노베이션 E&S 브랜드 필름"
+    },
+    {
+        "number": 29,
+        "id": "24XOhW3TUig",
+        "title": "새로운 삶에 어울리는 RV가 있다 | 카니발 편"
+    },
+    {
+        "number": 30,
+        "id": "OdJSxNMvevE",
+        "title": "1000가지 서비스 편"
+    }
 ];
 
-    let voteCount = parseInt(localStorage.getItem(VOTE_COUNT_KEY)) || 0;
-    let votedIndices = JSON.parse(localStorage.getItem(VOTED_INDICES_KEY)) || [];
+    let votedIds = [];
+    try {
+        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+        if (Array.isArray(saved)) {
+            votedIds = [...new Set(saved)].filter(id => adList.some(ad => ad.id === id)).slice(0, MAX_VOTES);
+        }
+    } catch (error) {
+        // 저장소 사용이 불가능하면 현재 페이지 안에서 투표 횟수를 관리합니다.
+    }
+    let voteCount = votedIds.length;
+    const app = document.getElementById('app');
 
-    function renderApp() {
-        const app = document.getElementById('app');
-        app.innerHTML = '';
+    adList.forEach((ad, index) => {
+        const card = document.createElement('div');
+        card.className = 'ad-card';
+        const videoContainer = document.createElement('div');
+        videoContainer.className = 'video-container';
+        const iframe = document.createElement('iframe');
+        iframe.src = 'https://www.youtube.com/embed/' + ad.id + '?rel=0';
+        iframe.title = String(ad.number).padStart(2, '0') + '. ' + ad.title;
+        iframe.loading = 'lazy';
+        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+        iframe.allowFullscreen = true;
+        videoContainer.appendChild(iframe);
 
+        const info = document.createElement('div');
+        info.className = 'info';
+        const heading = document.createElement('h3');
+        heading.textContent = String(ad.number).padStart(2, '0') + '. ' + ad.title;
+        const button = document.createElement('button');
+        button.className = 'vote-btn';
+        button.id = 'btn-' + index;
+        button.type = 'button';
+        button.textContent = '투표하기';
+        // 광고명에 작은따옴표, 큰따옴표, & 등이 있어도 안전하게 처리합니다.
+        button.addEventListener('click', () => submitVote(ad, index));
+        info.append(heading, button);
+        card.append(videoContainer, info);
+        app.appendChild(card);
+    });
+
+    function refreshButtons() {
         adList.forEach((ad, index) => {
-            const card = document.createElement('div');
-            card.className = 'ad-card';
-
-            const hasVoted = votedIndices.includes(index);
-
-            card.innerHTML = `
-                <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/${ad.id}?rel=0" allowfullscreen></iframe>
-                </div>
-                <div class="info">
-                    <h3>${String(index + 1).padStart(2, '0')}. ${ad.title}</h3>
-                    <button class="vote-btn ${hasVoted ? 'voted' : ''}" id="btn-${index}"
-                        onclick="submitVoteByIndex(${index})" ${hasVoted ? 'disabled' : ''}>
-                        ${hasVoted ? '투표 완료' : '투표하기'}
-                    </button>
-                </div>
-            `;
-
-            app.appendChild(card);
+            const button = document.getElementById('btn-' + index);
+            const voted = votedIds.includes(ad.id);
+            button.disabled = voted || voteCount >= MAX_VOTES;
+            button.classList.toggle('voted', voted);
+            button.textContent = voted ? '투표 완료' : '투표하기';
         });
-
-        updateVoteStatus();
     }
+    refreshButtons();
 
-    function updateVoteStatus() {
-        const statusEl = document.getElementById('current-status');
-        if (statusEl) {
-            statusEl.innerText = `${voteCount} / 5`;
-        }
-    }
-
-    window.onload = function() {
-        if (!localStorage.getItem(POPUP_KEY)) {
-            alert("격월로 진행되는 베스트 크리에이티브 온라인 투표에 오신 여러분 환영합니다.\n\n" +
-                  "후보작은 2026년 5~6월에 온에어된 광고 약 4,000여 개를 선별하여 30개의 광고가 선정되었습니다.\n\n" +
-                  "온라인 투표를 통해 10개 이하 광고를 선정, 내부 심사를 거쳐 최종 1편의 베스트 크리에이티브가 결정됩니다.\n" +
-                  "최종 선정작은 2026년 대한민국광고대상에서 예심 없이 본심에 오르며, 해당 팀의 인터뷰는 ADZ 7/8월호에서 확인하실 수 있습니다.\n\n" +
-                  "※ 투표기간: 2026. 7. 9(목) 12시 ~ 7. 13(월) 18시까지");
-
-            localStorage.setItem(POPUP_KEY, 'true');
-        }
-
-        renderApp();
-    };
-
-    function submitVoteByIndex(index) {
-        const ad = adList[index];
-
-        if (!ad) {
-            alert("광고 정보를 찾을 수 없습니다. 페이지를 새로고침한 뒤 다시 시도해 주세요.");
+    function submitVote(ad, index) {
+        if (votedIds.includes(ad.id)) return;
+        if (voteCount >= MAX_VOTES) {
+            alert('투표는 1인당 최대 5개까지만 가능합니다. 참여해주셔서 감사합니다!');
             return;
         }
+        if (!confirm("'" + ad.title + "'에 투표하시겠습니까?\n(현재 " + voteCount + '/5회 투표 완료)')) return;
 
-        submitVote(ad.title, index);
-    }
-
-    function submitVote(title, index) {
-        if (voteCount >= 5) {
-            alert("이미 5번의 투표를 모두 완료하셨습니다. 참여해주셔서 감사합니다!");
-            return;
-        }
-
-        if (votedIndices.includes(index)) {
-            alert("이미 투표한 광고입니다.");
-            return;
-        }
-
-        const remaining = 5 - voteCount;
-
-        if (!confirm(`'${title}'에 투표하시겠습니까?\n\n(현재 투표 완료: ${voteCount}회 / 남은 투표권: ${remaining}회)`)) {
-            return;
-        }
-
-        const btn = document.getElementById(`btn-${index}`);
-        btn.innerText = "전송 중...";
+        const btn = document.getElementById('btn-' + index);
+        btn.textContent = '전송 중...';
         btn.disabled = true;
 
-        const finalURL = scriptURL
-            + "?adTitle=" + encodeURIComponent(title)
-            + "&timestamp=" + encodeURIComponent(new Date().toLocaleString('ko-KR'));
+        // 기존 index의 Google Apps Script 요청 형식을 유지합니다.
+        // 이 이미지 요청 방식은 서버의 실제 집계 성공 여부를 확인하지 않습니다.
+        const finalURL = scriptURL + '?adTitle=' + encodeURIComponent(ad.title)
+            + '&timestamp=' + encodeURIComponent(new Date().toLocaleString('ko-KR', {timeZone: 'Asia/Seoul'}));
+        const img = new Image();
+        img.src = finalURL;
 
-        fetch(finalURL, {
-            mode: 'no-cors',
-            cache: 'no-cache'
-        })
-        .then(() => {
-            voteCount++;
-            votedIndices.push(index);
-
-            localStorage.setItem(VOTE_COUNT_KEY, voteCount);
-            localStorage.setItem(VOTED_INDICES_KEY, JSON.stringify(votedIndices));
-
-            btn.innerText = "투표 완료";
-            btn.classList.add("voted");
-            btn.disabled = true;
-
-            updateVoteStatus();
-
-            alert(`투표가 반영되었습니다! (총 ${voteCount}/5회 완료)`);
-        })
-        .catch(() => {
-            alert("네트워크 연결이 불안정합니다. 일반 브라우저(Chrome/Safari) 이용을 권장합니다.");
-            btn.innerText = "투표하기";
-            btn.disabled = false;
-        });
+        votedIds.push(ad.id);
+        voteCount = votedIds.length;
+        try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(votedIds));
+        } catch (error) {
+            // 현재 페이지에서는 투표 기록을 계속 유지합니다.
+        }
+        const submittedCount = voteCount;
+        refreshButtons();
+        setTimeout(() => {
+            alert("'" + ad.title + "' 투표 요청을 전송했습니다!\n(총 " + submittedCount + '/5회)');
+        }, 1200);
     }
 </script>
 </body>
