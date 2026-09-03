@@ -12,7 +12,7 @@
             max-width: 1100px; 
             margin: 0 auto; 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); 
             gap: 25px; 
         }
 
@@ -70,11 +70,11 @@
         
         <div style="max-width: 800px; margin: 20px auto; text-align: left; background: #fff; padding: 25px; border-radius: 12px; border: 1px solid #e1e4e8; line-height: 1.6; font-size: 0.95rem;">
             <p style="margin-top: 0;">격월로 진행되는 베스트 크리에이티브 온라인 투표에 오신 여러분 환영합니다.<br>
-            후보작은 <b>2025년 11~12월에 온에어된 광고 약 4,000여 개를 선별하여 30개의 광고가 선정</b>되었습니다.</p>
+            후보작은 <b>2026년 7~8월에 온에어된 광고 중 30개의 광고가 선정</b>되었습니다.</p>
             
             <p>온라인 투표를 통해 30개 중 10개의 광고를 선정, 내부 심사를 통해 최종 1개작을 선정합니다.<br>
             추후 선정된 베스트 크리에이티브에 대한 시상 및 인터뷰가 진행될 예정이며,<br>
-            인터뷰는 <b>ADZ 1/2월호</b>에서 확인할 수 있습니다.</p>
+            인터뷰는 <b>ADZ 9/10월호</b>에서 확인할 수 있습니다.</p>
             
             <div style="background: #eef7ff; padding: 15px; border-radius: 8px; border-left: 5px solid #007bff; margin: 20px 0;">
                 <b style="color: #0056b3; font-size: 1.1rem;">🗳 투표 방법 및 절차</b>
@@ -86,7 +86,7 @@
             </div>
 
             <p style="text-align: center; background: #f8f9fa; padding: 10px; border-radius: 5px; font-weight: bold; color: #d63384; margin-bottom: 0;">
-                ※ 투표기간: 2026년 2.20(금) 09시 ~ 2.24(화) 18시까지
+                ※ 투표기간: 2026년 9월 2일(수) ~ 9월 6일(일)까지
             </p>
         </div>
     </div>
@@ -94,95 +94,245 @@
     <div id="app"></div>
 
 <script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbxDchjYrdyKggqADRJBtrdpfLKurrHOdzHq0B8ZTmo1L5PwEAuoCTgYfF_U_fY8Q-N7rg/exec';
-
-    // 로컬 스토리지에서 투표 횟수 불러오기
-    let voteCount = parseInt(localStorage.getItem('myVoteCount')) || 0;
-
+    const scriptURL = "https://script.google.com/macros/s/AKfycbxDchjYrdyKggqADRJBtrdpfLKurrHOdzHq0B8ZTmo1L5PwEAuoCTgYfF_U_fY8Q-N7rg/exec";
+    const MAX_VOTES = 5;
+    // 이전 회차의 투표 기록과 분리합니다.
+    const STORAGE_KEY = 'bestCreative_2026_09_10_votes';
     const adList = [
-        { id: "vhd10f_qd1g", title: "쓰면 쓸수록 커진다?" },
-        { id: "xIBZERDWe60", title: "마이 히어로북" },
-        { id: "i5O5vMt0g2A", title: "상쾌한 스틱 zero" },
-        { id: "DdBgBXmSI38", title: "진격의 멋쟁이사자처럼" },
-        { id: "rDvw2EU-T6M", title: "그냥 홈을 캡스홈으로" },
-        { id: "X4M-bGETfqQ", title: "업비트: 코인모으기" },
-        { id: "yFbxk2Z74l0", title: "어디서, 무엇을, 어떻게" },
-        { id: "miZ8jG2ByJw", title: "자산관리 참 쉽조?" },
-        { id: "UXVXrEZK7HY", title: "그곳이 어디라도, 걱정없이 Trip" },
-        { id: "tSmf3vJuGKc", title: "당신을 지키는 현대 SUV feat.이명화" },
-        { id: "czY-tJ8CttM", title: "겨울은 스초생, 스초생은 지금" },
-        { id: "_fvlaFaQLVU", title: "뭐든지 해낸다, 예쁘게" },
-        { id: "Z4_T0P3gGRc", title: "사랑, 가장 따뜻한 언어 안타티카" },
-        { id: "zxiXj-pfEic", title: "세상과 부딪힐수록 모험편" },
-        { id: "yfsR3TgRbTU", title: "누가 크리스마스에 롯데리아를 예약해?" },
-        { id: "1hC_8qqmwIM", title: "산타 이즈 커밍 투 타운" },
-        { id: "DYc9nWEKvSI", title: "Little Big Dream" },
-        { id: "ZmFt4ia1dkc", title: "2025년, 올 한해도 감사했습니다!" },
-        { id: "1p17iiPFzu4", title: "CJ제일제당x흑백요리사2" },
-        { id: "XC3M29xYGII", title: "딸의 일기예보" },
-        { id: "vH0uDa5oCLk", title: "엘엑씁니다" },
-        { id: "4xKoYph7Uv4", title: "VOICE WANTED" },
-        { id: "tYe4BgFEwzE", title: "미식가의 맛집검색편" },
-        { id: "LLIKWO_NxGM", title: "KT 통신 140년." },
-        { id: "PuArA_yXdyY", title: "떠나자. 알바몬으로" },
-        { id: "0bAnsAz_kxg", title: "바보야 문제는 단어야" },
-        { id: "dyg2O7qiccA", title: "기억의 해상도는 음악이 흐르면 흐릿한 기억이 선명해져" },
-        { id: "f5cGNiFlOpg", title: "보이지 않아도 생생한 축구" },
-        { id: "6G8GLrBt_zI", title: "AI 시대 취업, 너를 믿는 우릴 믿어" },
-        { id: "F1oo5VVNB-o", title: "현대자동차x이찬혁 2026 위시 카운트다운" }
-    ];
+    {
+        "number": 1,
+        "id": "iCgB-64LkI8",
+        "title": "[HL D&I Halla] 에피트에 살아야 돼"
+    },
+    {
+        "number": 2,
+        "id": "Z-ECe8H3rmo",
+        "title": "투자 고수 강팀장의 비법ㅣ슈퍼SOL_강말금x이준(오피스)"
+    },
+    {
+        "number": 3,
+        "id": "dTSfcz4xfW8",
+        "title": "The Moving Room"
+    },
+    {
+        "number": 4,
+        "id": "toEXlwk39Rc",
+        "title": "이건 그냥 사랑이야-런칭"
+    },
+    {
+        "number": 5,
+        "id": "xVvOhfpoLeg",
+        "title": "장항준 x 유해진 차기작 발표 현장 공개! 편"
+    },
+    {
+        "number": 6,
+        "id": "4BA1g1yIhfM",
+        "title": "영양이 필요할 때 오트몬드!"
+    },
+    {
+        "number": 7,
+        "id": "tjakBEmZQ5E",
+        "title": "소환사 님… 명령 안 하세요? | 크랙 히나"
+    },
+    {
+        "number": 8,
+        "id": "YfkSEDhe2D0",
+        "title": "그는 말술이다 편"
+    },
+    {
+        "number": 9,
+        "id": "eQ2QX91S-wM",
+        "title": "잃어버린 내 스마트폰은 어디로 갔을까?"
+    },
+    {
+        "number": 10,
+        "id": "YMD77PICcd8",
+        "title": "안 보면 후회한다는 장혁 꺼드럭 영상 (Ep.2)"
+    },
+    {
+        "number": 11,
+        "id": "prmDSxowHzY",
+        "title": "대한의 가장 빛나는 여권"
+    },
+    {
+        "number": 12,
+        "id": "7tOzy5dsiyo",
+        "title": "맛있게 먹기만 해도 프로틴이 따라와~!"
+    },
+    {
+        "number": 13,
+        "id": "yOczs6V4f2Y",
+        "title": "우리 시대의 낭만 스낵, 꼬깔콘"
+    },
+    {
+        "number": 14,
+        "id": "t0Z__UqphcU",
+        "title": "김남길 전미도의 '선넘선녀' : 무한 생선생활"
+    },
+    {
+        "number": 15,
+        "id": "GUHLhLBRMS8",
+        "title": "위대한 집안일"
+    },
+    {
+        "number": 16,
+        "id": "_q-8tQknRbo",
+        "title": "요즘 우리는 XM6로 몰입"
+    },
+    {
+        "number": 17,
+        "id": "tqNRBm4kRwA",
+        "title": "여러분, 정말 수거하셨습니다! [대한민국 최초 100% 재생 PET 칠성사이다]"
+    },
+    {
+        "number": 18,
+        "id": "z49A40CwgwM",
+        "title": "K-Zero 사이다"
+    },
+    {
+        "number": 19,
+        "id": "Md2Bd_Ut4XI",
+        "title": "Maxim T.O.P '가장 가까운 휴식' 오피스 편"
+    },
+    {
+        "number": 20,
+        "id": "2B9Sg8FAJZc",
+        "title": "펜타포트 분실물이 노래가 되다, Lost&Found 캠페인"
+    },
+    {
+        "number": 21,
+        "id": "CcTtzIe-RO0",
+        "title": "이 대사 기억하는 사람?"
+    },
+    {
+        "number": 22,
+        "id": "GiLJwzlVEnA",
+        "title": "BTS JIN&TUNA LOG - 바다단백질 받아!"
+    },
+    {
+        "number": 23,
+        "id": "ThoK5gs455o",
+        "title": "신한 나라사랑카드모델 유나, 그렇게 군인이 된다"
+    },
+    {
+        "number": 24,
+        "id": "1j5nWDA2094",
+        "title": "인간이 달에 가면 98%는 이 생각이 듭니다"
+    },
+    {
+        "number": 25,
+        "id": "njWJx0yrDnI",
+        "title": "눈앞에서 펼쳐지는 토스뱅크 해외송금"
+    },
+    {
+        "number": 26,
+        "id": "eroTbXC8NOU",
+        "title": "[활명수1897 KOD] 브랜드필름 with CORTIS"
+    },
+    {
+        "number": 27,
+        "id": "eEOPfgHHDPU",
+        "title": "되면 창업 안돼도 스펙! 당신의 아이디어가 시작되는 곳"
+    },
+    {
+        "number": 28,
+        "id": "1XBTxdMOOFQ",
+        "title": "2026 SK이노베이션 E&S 브랜드 필름"
+    },
+    {
+        "number": 29,
+        "id": "24XOhW3TUig",
+        "title": "새로운 삶에 어울리는 RV가 있다 | 카니발 편"
+    },
+    {
+        "number": 30,
+        "id": "OdJSxNMvevE",
+        "title": "1000가지 서비스 편"
+    }
+];
 
+    let votedIds = [];
+    try {
+        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+        if (Array.isArray(saved)) {
+            votedIds = [...new Set(saved)].filter(id => adList.some(ad => ad.id === id)).slice(0, MAX_VOTES);
+        }
+    } catch (error) {
+        // 저장소 사용이 불가능하면 현재 페이지 안에서 투표 횟수를 관리합니다.
+    }
+    let voteCount = votedIds.length;
     const app = document.getElementById('app');
 
     adList.forEach((ad, index) => {
         const card = document.createElement('div');
         card.className = 'ad-card';
-        const displayIndex = String(index + 1).padStart(2, '0');
-        
-        card.innerHTML = `
-            <div class="video-container">
-                <iframe 
-    src="https://www.youtube.com/embed/${ad.id}?rel=0" 
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-    allowfullscreen>
-</iframe>
-            </div>
-            <div class="info">
-                <h3>${displayIndex}. ${ad.title}</h3>
-                <button class="vote-btn" id="btn-${index}" onclick="submitVote('${ad.title}', ${index})">투표하기</button>
-            </div>
-        `;
+        const videoContainer = document.createElement('div');
+        videoContainer.className = 'video-container';
+        const iframe = document.createElement('iframe');
+        iframe.src = 'https://www.youtube.com/embed/' + ad.id + '?rel=0';
+        iframe.title = String(ad.number).padStart(2, '0') + '. ' + ad.title;
+        iframe.loading = 'lazy';
+        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+        iframe.allowFullscreen = true;
+        videoContainer.appendChild(iframe);
+
+        const info = document.createElement('div');
+        info.className = 'info';
+        const heading = document.createElement('h3');
+        heading.textContent = String(ad.number).padStart(2, '0') + '. ' + ad.title;
+        const button = document.createElement('button');
+        button.className = 'vote-btn';
+        button.id = 'btn-' + index;
+        button.type = 'button';
+        button.textContent = '투표하기';
+        // 광고명에 작은따옴표, 큰따옴표, & 등이 있어도 안전하게 처리합니다.
+        button.addEventListener('click', () => submitVote(ad, index));
+        info.append(heading, button);
+        card.append(videoContainer, info);
         app.appendChild(card);
     });
 
-    function submitVote(title, index) {
-        if (voteCount >= 5) {
-            alert("투표는 1인당 최대 5번까지만 가능합니다. 참여해주셔서 감사합니다!");
+    function refreshButtons() {
+        adList.forEach((ad, index) => {
+            const button = document.getElementById('btn-' + index);
+            const voted = votedIds.includes(ad.id);
+            button.disabled = voted || voteCount >= MAX_VOTES;
+            button.classList.toggle('voted', voted);
+            button.textContent = voted ? '투표 완료' : '투표하기';
+        });
+    }
+    refreshButtons();
+
+    function submitVote(ad, index) {
+        if (votedIds.includes(ad.id)) return;
+        if (voteCount >= MAX_VOTES) {
+            alert('투표는 1인당 최대 5개까지만 가능합니다. 참여해주셔서 감사합니다!');
             return;
         }
+        if (!confirm("'" + ad.title + "'에 투표하시겠습니까?\n(현재 " + voteCount + '/5회 투표 완료)')) return;
 
-        if(!confirm(`'${title}'에 투표하시겠습니까?\n(현재 ${voteCount}/5회 투표 완료)`)) return;
-
-        const btn = document.getElementById(`btn-${index}`);
-        btn.innerText = "전송 중...";
+        const btn = document.getElementById('btn-' + index);
+        btn.textContent = '전송 중...';
         btn.disabled = true;
 
-        const finalURL = scriptURL + "?adTitle=" + encodeURIComponent(title) + "&timestamp=" + encodeURIComponent(new Date().toLocaleString());
-
+        // 기존 index의 Google Apps Script 요청 형식을 유지합니다.
+        // 이 이미지 요청 방식은 서버의 실제 집계 성공 여부를 확인하지 않습니다.
+        const finalURL = scriptURL + '?adTitle=' + encodeURIComponent(ad.title)
+            + '&timestamp=' + encodeURIComponent(new Date().toLocaleString('ko-KR', {timeZone: 'Asia/Seoul'}));
         const img = new Image();
         img.src = finalURL;
 
-        voteCount++;
-        localStorage.setItem('myVoteCount', voteCount);
-
+        votedIds.push(ad.id);
+        voteCount = votedIds.length;
+        try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(votedIds));
+        } catch (error) {
+            // 현재 페이지에서는 투표 기록을 계속 유지합니다.
+        }
+        const submittedCount = voteCount;
+        refreshButtons();
         setTimeout(() => {
-            alert(`'${title}' 투표가 완료되었습니다!\n(총 ${voteCount}/5회 완료)`);
-            btn.innerText = "투표 완료";
-            btn.classList.add('voted');
-            
-            if (voteCount >= 5) {
-                alert("모든 투표 기회를 사용하셨습니다. 참여해주셔서 감사합니다!");
-            }
+            alert("'" + ad.title + "' 투표 요청을 전송했습니다!\n(총 " + submittedCount + '/5회)');
         }, 1200);
     }
 </script>
