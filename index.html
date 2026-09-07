@@ -94,7 +94,9 @@
     <div id="app"></div>
 
 <script>
-    const scriptURL = "https://script.google.com/macros/s/AKfycbxDchjYrdyKggqADRJBtrdpfLKurrHOdzHq0B8ZTmo1L5PwEAuoCTgYfF_U_fY8Q-N7rg/exec";
+    // ▼▼▼ 새로 배포한 웹앱 URL(.../exec)로 반드시 교체하세요 ▼▼▼
+    const scriptURL = "여기에_새_배포_URL_붙여넣기";
+    // ▲▲▲ 예: https://script.google.com/macros/s/XXXXXXXX/exec ▲▲▲
     const MAX_VOTES = 5;
     // 이전 회차의 투표 기록과 분리합니다.
     const STORAGE_KEY = 'bestCreative_2026_09_10_votes';
@@ -315,25 +317,31 @@
         btn.textContent = '전송 중...';
         btn.disabled = true;
 
-        // 기존 index의 Google Apps Script 요청 형식을 유지합니다.
-        // 이 이미지 요청 방식은 서버의 실제 집계 성공 여부를 확인하지 않습니다.
         const finalURL = scriptURL + '?adTitle=' + encodeURIComponent(ad.title)
             + '&timestamp=' + encodeURIComponent(new Date().toLocaleString('ko-KR', {timeZone: 'Asia/Seoul'}));
-        const img = new Image();
-        img.src = finalURL;
 
-        votedIds.push(ad.id);
-        voteCount = votedIds.length;
-        try {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(votedIds));
-        } catch (error) {
-            // 현재 페이지에서는 투표 기록을 계속 유지합니다.
-        }
-        const submittedCount = voteCount;
-        refreshButtons();
-        setTimeout(() => {
-            alert("'" + ad.title + "' 투표 요청을 전송했습니다!\n(총 " + submittedCount + '/5회)');
-        }, 1200);
+        // fetch로 서버 응답을 실제로 확인합니다.
+        // 서버가 'Success'를 돌려줬을 때만 투표 완료 처리 → 조용히 실패하는 문제 방지.
+        fetch(finalURL)
+            .then(res => res.text())
+            .then(text => {
+                if (text.trim() !== 'Success') throw new Error(text);
+                votedIds.push(ad.id);
+                voteCount = votedIds.length;
+                try {
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify(votedIds));
+                } catch (error) {
+                    // 저장소 사용 불가 시 현재 페이지에서만 투표 기록 유지.
+                }
+                refreshButtons();
+                alert("'" + ad.title + "' 투표 완료! (총 " + voteCount + '/5회)');
+            })
+            .catch(error => {
+                // 실패 시 버튼을 되살려 재시도 가능하게 함.
+                btn.textContent = '투표하기';
+                btn.disabled = false;
+                alert('전송에 실패했습니다. 다시 시도해 주세요.\n(' + error.message + ')');
+            });
     }
 </script>
 </body>
