@@ -70,11 +70,11 @@
         
         <div style="max-width: 800px; margin: 20px auto; text-align: left; background: #fff; padding: 25px; border-radius: 12px; border: 1px solid #e1e4e8; line-height: 1.6; font-size: 0.95rem;">
             <p style="margin-top: 0;">격월로 진행되는 베스트 크리에이티브 온라인 투표에 오신 여러분 환영합니다.<br>
-            후보작은 <b>2026년 7~8월에 온에어된 광고 중 30개의 광고가 선정</b>되었습니다.</p>
+            후보작은 <b>2026년 9~10월에 온에어된 광고 중 30개의 광고가 선정</b>되었습니다.</p>
             
             <p>온라인 투표를 통해 30개 중 10개의 광고를 선정, 내부 심사를 통해 최종 1개작을 선정합니다.<br>
             추후 선정된 베스트 크리에이티브에 대한 시상 및 인터뷰가 진행될 예정이며,<br>
-            인터뷰는 <b>ADZ 9/10월호</b>에서 확인할 수 있습니다.</p>
+            인터뷰는 <b>ADZ 11/12월호</b>에서 확인할 수 있습니다.</p>
             
             <div style="background: #eef7ff; padding: 15px; border-radius: 8px; border-left: 5px solid #007bff; margin: 20px 0;">
                 <b style="color: #0056b3; font-size: 1.1rem;">🗳 투표 방법 및 절차</b>
@@ -86,7 +86,7 @@
             </div>
 
             <p style="text-align: center; background: #f8f9fa; padding: 10px; border-radius: 5px; font-weight: bold; color: #d63384; margin-bottom: 0;">
-                ※ 투표기간: 2026년 9월 2일(수) ~ 9월 6일(일)까지
+                ※ 투표기간: 2026년 11월 4일(수) ~ 11월 8일(일)까지
             </p>
         </div>
     </div>
@@ -94,162 +94,160 @@
     <div id="app"></div>
 
 <script>
-    // ▼▼▼ 새로 배포한 웹앱 URL(.../exec)로 반드시 교체하세요 ▼▼▼
     const scriptURL = "https://script.google.com/macros/s/AKfycbwuQoSuvSKXDZ59tGMsti1vohskOrM9t3JNo1nbqExtwrQtdyI-LQOUVqITPUGhmCo0jA/exec";
-    // ▲▲▲ 예: https://script.google.com/macros/s/XXXXXXXX/exec ▲▲▲
     const MAX_VOTES = 5;
     // 이전 회차의 투표 기록과 분리합니다.
-    const STORAGE_KEY = 'bestCreative_2026_09_10_votes';
+    const STORAGE_KEY = 'bestCreative_2026_11_12_votes';
     const adList = [
     {
         "number": 1,
-        "id": "iCgB-64LkI8",
-        "title": "[HL D&I Halla] 에피트에 살아야 돼"
+        "id": "AEGUmtHK47w",
+        "title": "대화를 하자 l 리센느의 똑똑한 통화법 편"
     },
     {
         "number": 2,
-        "id": "Z-ECe8H3rmo",
-        "title": "투자 고수 강팀장의 비법ㅣ슈퍼SOL_강말금x이준(오피스)"
+        "id": "xp5InKdJa3Q",
+        "title": "EP.1 면접 대기 중에 생긴 일 ㅣ 한 순간도 놓치지 않는 움직임 편"
     },
     {
         "number": 3,
-        "id": "dTSfcz4xfW8",
-        "title": "The Moving Room"
+        "id": "eRr3rMg8oOM",
+        "title": "안전한 금융생활 편"
     },
     {
         "number": 4,
-        "id": "toEXlwk39Rc",
-        "title": "이건 그냥 사랑이야-런칭"
+        "id": "zR0h9Jymp9A",
+        "title": "코인을 넘어 금융으로 | 스테이킹 6’’ 편"
     },
     {
         "number": 5,
-        "id": "xVvOhfpoLeg",
-        "title": "장항준 x 유해진 차기작 발표 현장 공개! 편"
+        "id": "jVtv6YbZKYg",
+        "title": "Welcome! 현대카드 Maurizio Cattelan 'Credit Card'] 편"
     },
     {
         "number": 6,
-        "id": "4BA1g1yIhfM",
-        "title": "영양이 필요할 때 오트몬드!"
+        "id": "rY1Xs3kPgyE",
+        "title": "진심을 다해 안심을 만든다 편"
     },
     {
         "number": 7,
-        "id": "tjakBEmZQ5E",
-        "title": "소환사 님… 명령 안 하세요? | 크랙 히나"
+        "id": "nALAkkY0lxA",
+        "title": "HUMIERE_Maison de Humière (FULL) 편"
     },
     {
         "number": 8,
-        "id": "YfkSEDhe2D0",
-        "title": "그는 말술이다 편"
+        "id": "KoynVkN3lPU",
+        "title": "AI로 제대로 돌아가는 세탁건조 편"
     },
     {
         "number": 9,
-        "id": "eQ2QX91S-wM",
-        "title": "잃어버린 내 스마트폰은 어디로 갔을까?"
+        "id": "2qgN6THLDO4",
+        "title": "롯데리아는 햄버거 맛집이다 VS 디저트 맛집이다 편"
     },
     {
         "number": 10,
-        "id": "YMD77PICcd8",
-        "title": "안 보면 후회한다는 장혁 꺼드럭 영상 (Ep.2)"
+        "id": "_f5RrmEFJuE",
+        "title": "야구 때문에 사는 야.생. 인류 보고서 편"
     },
     {
         "number": 11,
-        "id": "prmDSxowHzY",
-        "title": "대한의 가장 빛나는 여권"
+        "id": "t_VRIlnnAAM",
+        "title": "[동원그룹 2026 브랜드 캠페인] 미래가 필요한 자리에, 답을 만든다 편"
     },
     {
         "number": 12,
-        "id": "7tOzy5dsiyo",
-        "title": "맛있게 먹기만 해도 프로틴이 따라와~!"
+        "id": "6XEH6HVkvFk",
+        "title": "넷플릭스 코리아 10주년, 미쳤넷! 편"
     },
     {
         "number": 13,
-        "id": "yOczs6V4f2Y",
-        "title": "우리 시대의 낭만 스낵, 꼬깔콘"
+        "id": "bXApUVQo06Y",
+        "title": "본능따라 해외결제ㅣ풀버전 편"
     },
     {
         "number": 14,
-        "id": "t0Z__UqphcU",
-        "title": "김남길 전미도의 '선넘선녀' : 무한 생선생활"
+        "id": "8i16KOJSi1g",
+        "title": "(Full ver.)문제는 달라도 정답은 하나, 애크로뱃이면 다 됨! 편"
     },
     {
         "number": 15,
-        "id": "GUHLhLBRMS8",
-        "title": "위대한 집안일"
+        "id": "pnpMaQdPKCQ",
+        "title": "GH 경기주택도시공사 두번째 New TVC - 상상을 현실로 만드는 GH, 도시를 바꾸는 실력 편"
     },
     {
         "number": 16,
-        "id": "_q-8tQknRbo",
-        "title": "요즘 우리는 XM6로 몰입"
+        "id": "5yyGybu_1Zg",
+        "title": "THIS IS REAL. THIS IS REALBARRIER. 편"
     },
     {
         "number": 17,
-        "id": "tqNRBm4kRwA",
-        "title": "여러분, 정말 수거하셨습니다! [대한민국 최초 100% 재생 PET 칠성사이다]"
+        "id": "0LSafHbtP4Q",
+        "title": "염라대왕님, 화가 많~이 나죠? (feat. 차승원, 차우민) 편"
     },
     {
         "number": 18,
-        "id": "z49A40CwgwM",
-        "title": "K-Zero 사이다"
+        "id": "WmeOY19O5fw",
+        "title": "2026 하기스 그린플레이 - 보다, 더 초록빛 지구를 위해 편"
     },
     {
         "number": 19,
-        "id": "Md2Bd_Ut4XI",
-        "title": "Maxim T.O.P '가장 가까운 휴식' 오피스 편"
+        "id": "kCnfkblmZ54",
+        "title": "초심 Crafted by SK hynix 편"
     },
     {
         "number": 20,
-        "id": "2B9Sg8FAJZc",
-        "title": "펜타포트 분실물이 노래가 되다, Lost&Found 캠페인"
+        "id": "jOocGK4p2V8",
+        "title": "2026 카카오페이 노난날, 전 국민 할인으로 노나는 날! 편"
     },
     {
         "number": 21,
-        "id": "CcTtzIe-RO0",
-        "title": "이 대사 기억하는 사람?"
+        "id": "erWrjmvabpI",
+        "title": "[얼굴 덕 보고 십퍼] 펭수vs철웅vs호걸 \"내가 살게!\" 편"
     },
     {
         "number": 22,
-        "id": "GiLJwzlVEnA",
-        "title": "BTS JIN&TUNA LOG - 바다단백질 받아!"
+        "id": "Mk9kAHoWR34",
+        "title": "가장 든든한 우리 지역 좋은 병원 편"
     },
     {
         "number": 23,
-        "id": "ThoK5gs455o",
-        "title": "신한 나라사랑카드모델 유나, 그렇게 군인이 된다"
+        "id": "r-pcS81XCRY",
+        "title": "[프렌즈아이드롭 X 에스파] 똑똑히 들어, 똑똑히 드롭! 메마른 눈에 폭발하는 수분포텐 | 황폐한 도시 (30\")편"
     },
     {
         "number": 24,
-        "id": "1j5nWDA2094",
-        "title": "인간이 달에 가면 98%는 이 생각이 듭니다"
+        "id": "PkpNxBfgZ94",
+        "title": "IBK나라사랑카드 : 커피지원 편"
     },
     {
         "number": 25,
-        "id": "njWJx0yrDnI",
-        "title": "눈앞에서 펼쳐지는 토스뱅크 해외송금"
+        "id": "nTZgxq1Igfg",
+        "title": "구내염 칠트키 칠칠칠 알보칠_여기어때(Full) 편"
     },
     {
         "number": 26,
-        "id": "eroTbXC8NOU",
-        "title": "[활명수1897 KOD] 브랜드필름 with CORTIS"
+        "id": "vKOex73Y5bw",
+        "title": "술은 관계와 관계없다! ‘마지막 흑기사’ 편_Full 편"
     },
     {
         "number": 27,
-        "id": "eEOPfgHHDPU",
-        "title": "되면 창업 안돼도 스펙! 당신의 아이디어가 시작되는 곳"
+        "id": "P8XyWep5pic",
+        "title": "경호씨, 이렇게 주무시면 모델비는 못드립니다.편"
     },
     {
         "number": 28,
-        "id": "1XBTxdMOOFQ",
-        "title": "2026 SK이노베이션 E&S 브랜드 필름"
+        "id": "gRXqvo15Euo",
+        "title": "AI 모두쓰기 프로젝트 | AI [한국을 넘어 세계와 함께] 쓰기 편"
     },
     {
         "number": 29,
-        "id": "24XOhW3TUig",
-        "title": "새로운 삶에 어울리는 RV가 있다 | 카니발 편"
+        "id": "7cd_DX2m-As",
+        "title": "[2026 쓱데이] 대한민국 시그니처 세일 개막, 오래 기다리셨습니다. 편"
     },
     {
         "number": 30,
-        "id": "OdJSxNMvevE",
-        "title": "1000가지 서비스 편"
+        "id": "ep7Ak9MKi8U",
+        "title": "RESCENE (리센느)가 전하는 우리 모두를 위한 응원가 편"
     }
 ];
 
