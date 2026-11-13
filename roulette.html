@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>크리에이터스 나잇 럭키 룰렛</title>
+<style>
+*{box-sizing:border-box;margin:0}
+body{font-family:-apple-system,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;background:#111;color:#fff;min-height:100vh;display:flex;justify-content:center;padding:28px 18px}
+.wrap{width:100%;max-width:380px;text-align:center}
+.tag{display:inline-block;background:#EFFC50;color:#111;font-weight:900;font-size:12px;letter-spacing:.08em;padding:5px 10px;border-radius:6px}
+h1{font-size:26px;line-height:1.3;margin:14px 0 6px;font-weight:900}
+.sub{font-size:14px;color:#bbb;line-height:1.5}
+.wheel-box{position:relative;width:300px;height:300px;margin:26px auto 22px}
+.pin{position:absolute;top:-14px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:16px solid transparent;border-right:16px solid transparent;border-top:30px solid #fff;z-index:2;filter:drop-shadow(0 2px 2px rgba(0,0,0,.5))}
+.wheel{width:300px;height:300px;border-radius:50%;border:6px solid #EFFC50;position:relative;overflow:hidden;transition:transform 4s cubic-bezier(.17,.67,.15,1);
+ background:conic-gradient(#EFFC50 0 45deg,#222 45deg 90deg,#EFFC50 90deg 135deg,#222 135deg 180deg,#EFFC50 180deg 225deg,#222 225deg 270deg,#EFFC50 270deg 315deg,#222 315deg 360deg)}
+.seg{position:absolute;left:50%;top:0;height:50%;transform-origin:bottom center;width:70px;margin-left:-35px;padding-top:18px;font-weight:900;font-size:13px;line-height:1.2}
+.seg span{display:block;font-size:20px;margin-bottom:2px}
+.hub{position:absolute;top:50%;left:50%;width:70px;height:70px;margin:-35px;border-radius:50%;background:#111;border:4px solid #EFFC50;display:flex;align-items:center;justify-content:center;font-weight:900;color:#EFFC50;font-size:15px}
+.btn{width:100%;border:0;border-radius:30px;padding:16px;font-size:17px;font-weight:900;cursor:pointer;background:#EFFC50;color:#111}
+.btn:disabled{opacity:.5}
+.result{display:none;margin-top:6px;background:#EFFC50;color:#111;border-radius:16px;padding:22px 18px}
+.result h2{font-size:22px;font-weight:900}
+.result p{font-size:13px;color:#333;line-height:1.5;margin-top:6px}
+.link{margin:14px 0 8px;background:#fff;border:2px solid #111;border-radius:10px;padding:10px;font-size:12px;word-break:break-all;text-align:left}
+.b2{width:100%;border:0;border-radius:10px;padding:13px;font-size:15px;font-weight:800;cursor:pointer;margin-top:6px}
+.dark{background:#111;color:#EFFC50}.light{background:#fff;color:#111;border:2px solid #111}
+.rule{margin-top:20px;font-size:12px;color:#999;line-height:1.7;text-align:left;border-top:1px solid #333;padding-top:14px}
+</style></head><body>
+<div class="wrap">
+  <span class="tag">CREATOR'S NIGHT · LUCKY 777</span>
+  <h1>룰렛 돌리고,<br>티켓 응모권 받자 🎰</h1>
+  <p class="sub">모은 응모권으로 크리에이터스 나잇 티켓<br>(4만 원 상당) 추첨에 도전하세요!</p>
+
+  <div class="wheel-box">
+    <div class="pin"></div>
+    <div class="wheel" id="wheel"></div>
+    <div class="hub">777</div>
+  </div>
+
+  <button class="btn" id="spin">룰렛 돌리기</button>
+
+  <div class="result" id="result">
+    <h2 id="rt"></h2>
+    <p id="rp"></p>
+    <div class="link" id="link"></div>
+    <button class="b2 dark" id="share">친구에게 공유하고 한 번 더 🎰</button>
+    <button class="b2 light" id="copy">링크만 복사</button>
+  </div>
+
+  <div class="rule">
+    · 룰렛 당첨 시 응모권 1장 + 친구 구독 1명당 1장<br>
+    · 기간 ~11.25(화) · 당첨 발표 11.27(목) 개별 안내<br>
+    · 마감일 기준 구독 유지 중인 친구만 인정돼요<br>
+    · 응모권/꽝은 매번 50% 확률로 무작위로 나와요<br>
+    · 친구에게 공유하면 룰렛을 한 번 더 돌릴 수 있어요 (최대 3회)
+  </div>
+</div>
+<script>
+// ▼ 설정: 스티비 주소록 번호 / (선택) 참여 기록용 구글 Apps Script URL
+var LIST_ID = "393702";
+var LOG_URL = "https://script.google.com/macros/s/AKfycbyqMNr-0iK50eEWEfro3oC548JbyCLTNA47CX7ndIlL9ksVxDCWUMQAoQdQPUBtRRi0gQ/exec";   // ← Apps Script 웹 앱 URL (https://script.google.com/macros/s/.../exec)
+
+var r = new URLSearchParams(location.search).get("r") || "";
+var url = "https://page.stibee.com/subscriptions/" + LIST_ID + "?recommender=" + encodeURIComponent(r);
+var labels = [["🎟","응모권"],["💥","꽝"],["🎟","응모권"],["💥","꽝"],["🎟","응모권"],["💥","꽝"],["🎟","응모권"],["💥","꽝"]];
+var wheel = document.getElementById("wheel");
+labels.forEach(function(l,i){
+  var d=document.createElement("div"); d.className="seg";
+  d.style.transform="rotate("+(i*45+22.5)+"deg)"; d.style.color=(i%2?"#EFFC50":"#111");
+  d.innerHTML="<span>"+l[0]+"</span>"+l[1]; wheel.appendChild(d);
+});
+document.getElementById("link").textContent = url;
+var KEY = "cn_r_" + r, st = {spins:0, extra:0, win:0, deg:0};
+try{ var sv=JSON.parse(localStorage.getItem(KEY)||"null"); if(sv) st=sv; }catch(e){}
+var spinBtn=document.getElementById("spin"), box=document.getElementById("result");
+function save(){ try{ localStorage.setItem(KEY,JSON.stringify(st)); }catch(e){} }
+function canSpin(){ return st.spins < 1 + st.extra; }
+function render(last){
+  if(st.spins===0) return;
+  box.style.display="block";
+  var rt=document.getElementById("rt"), rp=document.getElementById("rp");
+  if(last==="win"){ rt.textContent="🎟 응모권 1장 당첨!"; rp.innerHTML="친구 1명이 내 링크로 구독할 때마다<br><b>응모권 +1장</b>. 공유하면 룰렛도 한 번 더!"; }
+  else { rt.textContent="💥 꽝! 한 번 더?"; rp.innerHTML="친구에게 내 링크를 공유하면 <b>한 번 더</b> 돌릴 수 있어요.<br>친구가 구독하면 응모권 +1장은 덤!"; }
+  if(canSpin()){ spinBtn.disabled=false; spinBtn.textContent="한 번 더 돌리기"; }
+  else { spinBtn.disabled=true; spinBtn.textContent = st.extra>=3 ? "오늘의 기회 끝! ✔" : "공유하고 한 번 더 돌리기 👇"; }
+  document.getElementById("share").style.display = st.extra>=3 ? "none" : "block";
+}
+if(st.deg) wheel.style.transition="none", wheel.style.transform="rotate("+st.deg+"deg)";
+render(st.last);
+spinBtn.onclick = function(){
+  if(!canSpin()) return;
+  this.disabled=true; wheel.style.transition="transform 4s cubic-bezier(.17,.67,.15,1)";
+  var win = Math.random()<0.5;
+  var slots = win ? [0,2,4,6] : [1,3,5,7];
+  var k = slots[Math.floor(Math.random()*4)];
+  var target = 360 - (k*45+22.5);              // 맨 위 핀이 k번 칸 가운데
+  var base = Math.ceil(st.deg/360)*360 + 360*5;
+  st.deg = base + target; wheel.style.transform="rotate("+st.deg+"deg)";
+  setTimeout(function(){
+    st.spins++; if(win) st.win++; st.last = win?"win":"lose"; save(); render(st.last);
+    if (LOG_URL && r) fetch(LOG_URL+"?type=spin&result="+(win?"win":"lose")+"&r="+encodeURIComponent(r),{mode:"no-cors"});
+  }, 4100);
+};
+function unlock(){ if(st.extra<3 && !canSpin()){ st.extra++; save(); render(st.last); if (LOG_URL && r) fetch(LOG_URL+"?type=share&r="+encodeURIComponent(r),{mode:"no-cors"}); } }
+document.getElementById("copy").onclick = function(){ var b=this; navigator.clipboard.writeText(url).then(function(){ b.textContent="복사 완료! ✔"; unlock(); }); };
+document.getElementById("share").onclick = function(){
+  var text="ADZ 레터 같이 보자! 이 링크로 구독하면 나 크리에이터스 나잇 응모권 +1 🎟\n"+url;
+  var btn=this;
+  if (navigator.share) navigator.share({text:text}).then(unlock).catch(function(){});
+  else navigator.clipboard.writeText(text).then(function(){ btn.textContent="공유 문구 복사 완료! 친구에게 붙여넣기 ✔"; unlock(); });
+};
+</script>
+</body></html>
