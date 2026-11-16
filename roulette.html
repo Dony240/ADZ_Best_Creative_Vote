@@ -108,8 +108,9 @@ document.getElementById("copy").onclick = function(){ var b=this; navigator.clip
 document.getElementById("share").onclick = function(){
   var text="ADZ 레터 같이 보자! 이 링크로 구독하면 나 크리에이터스 나잇 응모권 +1 🎟\n"+url;
   var btn=this;
-  if (navigator.share) navigator.share({text:text}).then(unlock).catch(function(){});
-  else navigator.clipboard.writeText(text).then(function(){ btn.textContent="공유 문구 복사 완료! 친구에게 붙여넣기 ✔"; unlock(); });
+  var mobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent) || (navigator.maxTouchPoints>1 && /Mac/.test(navigator.userAgent));
+  if (mobile && navigator.share) navigator.share({text:text}).then(unlock).catch(function(){});
+  else navigator.clipboard.writeText(text).then(function(){ btn.textContent="복사 완료! 카톡·메일에 붙여넣기 ✔"; unlock(); });
 };
 </script>
 </body></html>
